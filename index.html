@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student's Grade Calculator</title>
+    <link rel="stylesheet" href="../student-mark/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-transform: capitalize;
+            font-family: 'Roboto', sans-serif;
+
+
+        }
+
+        body {
+            display: grid;
+            place-content: center;
+            min-height: 100vh;
+            background-color: rgb(141, 192, 198);
+        }
+
+        .container {
+            background-color: #ecf0f1;
+            width: 700px;
+            height: 400px;
+            box-shadow: 0px 10px 10px 0px #000;
+            border-radius: 10px;
+
+        }
+
+        .left-box {
+            position: absolute;
+            width: 250px;
+            height: 400px;
+            background-color: #00d2d3;
+            border-radius: 10px 0px 0px 10px;
+        }
+
+        .left-box h1 {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ecf0f1;
+            font-weight: 900;
+            letter-spacing: 3px;
+
+
+        }
+
+        .p-g-t {
+            text-align: center;
+            display: grid;
+            place-content: center;
+            min-height: 30vh;
+
+        }
+
+        .p-g-t h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 20px 0px;
+
+        }
+
+        .content .right-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 62vw;
+            min-height: 50vh;
+        }
+
+        .right-box input {
+            margin: 10px 0px;
+            width: 300px;
+            height: 30px;
+            padding: 10px;
+            outline: none;
+            border: 0;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        .right-box button {
+            height: 40px;
+            width: 150px;
+            margin-top: 10px;
+            padding: 0px 10px;
+            background-color: #00d2d3;
+            color: #ecf0f1;
+            border: 0;
+            outline: none;
+            font-size: medium;
+            font-weight: 900;
+            border-radius: 30px;
+            cursor: pointer;
+
+        }
+
+        .firstinput {
+            background-color: #00d2d3;
+            color: white;
+            box-shadow: 0px 2px 5px 2px gray;
+        }
+
+        .result {
+            position: absolute;
+            bottom: 147px;
+            width: 250px;
+            height: 50px;
+            background-color: #01a3a4;
+            border-radius: 0px 0px 0px 10px;
+
+        }
+
+        .result h2 {
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.3rem;
+            color: #ecf0f1;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="left-box">
+            <h1>result</h1>
+            <div class="p-g-t">
+                <h2>percentage - <span class="per" id="per"></span></h2>
+                <h2>grade - <span class="gra" id="gra"></span></h2>
+                <h2>total - <span class="to" id="to"></span></h2>
+            </div>
+        </div>
+        <div class="content">
+            <div class="right-box">
+                <input type="text" id="name" class="firstinput" placeholder="Name" value="Name : " />
+                <input type="number" id="idd" class="firstinput" placeholder="ID" value="ID : " />
+                <input type="number" id="tam" placeholder="tamil" />
+                <input type="number" id="eng" placeholder="english" />
+                <input type="number" id="mat" placeholder="maths" />
+                <input type="number" id="sci" placeholder="science" />
+                <input type="number" id="ss" placeholder="social science" />
+                <button type="button" onclick="show_result()">show result</button>
+
+            </div>
+        </div>
+        <div class="result" id="res">
+            <h2></h2>
+        </div>
+
+    </div>
+    <script>alert("Hello All Welcome to score checking page")</script>
+    <script src="../student-mark/index.js"></script>
+
+    <script>
+        function show_result() {
+            let tam = document.querySelector("#tam").value;
+            let eng = document.querySelector("#eng").value;
+            let mat = document.querySelector("#mat").value;
+            let sci = document.querySelector("#sci").value;
+            let ss = document.querySelector("#ss").value;
+
+            let to = parseFloat(tam) + parseFloat(eng) + parseFloat(mat) + parseFloat(sci) + parseFloat(ss);
+            let per = to / 5;
+            //  (to*100)/500;
+            if (per >= 90 && 100 >= 90) {
+                document.querySelector(".gra").innerHTML = "A";
+            }
+            else if (per >= 70 && 89 >= 70) {
+                document.querySelector(".gra").innerHTML = "B";
+            }
+            else if (per >= 60 && 69 >= 50) {
+                document.querySelector(".gra").innerHTML = "C";
+            }
+            else if (per >= 40 && 59 >= 40) {
+                document.querySelector(".gra").innerHTML = "D";
+            }
+            else if (per >= 30 && 39 >= 30) {
+                document.querySelector(".gra").innerHTML = "E";
+            }
+
+            else {
+                document.querySelector(".gra").innerHTML = "You Are Fail";
+            }
+            document.querySelector(".to").innerHTML = to;
+            document.querySelector(".per").innerHTML = per;
+            if (per > 29) {
+                document.querySelector(".result h2").innerHTML = "YOU ARE PASS";
+            }
+            else {
+                document.querySelector(".result h2").innerHTML = "YOU ARE FAIL";
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
